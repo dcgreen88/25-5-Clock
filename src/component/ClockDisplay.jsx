@@ -1,15 +1,24 @@
-export default function ClockDisplay({ timeLeft, isBreak, onStart, onReset }) {
+export default function ClockDisplay({
+  timeLeft,
+  timerValue,
+  isBreak,
+  onStart,
+  onReset,
+}) {
   return (
     <>
       <div
         id="clock-display"
-        className="flex flex-col items-center border-4 border-teal-950 rounded-[32px] w-1/4 pt-2 pb-3 mt-2"
+        className="flex flex-col items-center border-4 border-teal-950 rounded-[32px] w-1/5 pt-2 pb-3 mt-2"
       >
         <div id="clock" className="flex flex-col items-center">
-          <h2 id="timer-label" className="text-xl">
+          <h2 id="timer-label" className={`text-xl ${timerValue <= 59 ? 'text-red-600' : ''}`}>
             {isBreak ? 'Break' : 'Session'}
           </h2>
-          <div id="time-left" className="text-5xl">
+          <div
+            id="time-left"
+            className={`text-5xl ${timerValue <= 59 ? 'text-red-600' : ''}`}
+          >
             {timeLeft}
           </div>
         </div>

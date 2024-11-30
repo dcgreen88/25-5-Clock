@@ -110,13 +110,13 @@ function App() {
           <h2 id="break-label">Break Length</h2>
           <div id="break-controls" className="flex">
             <div id="break-decrement" onClick={decreaseTimer}>
-              v
+              -
             </div>
             <div id="break-length" className="mx-2">
               {breakLength}
             </div>
             <div id="break-increment" onClick={increaseTimer}>
-              ^
+              +
             </div>
           </div>
         </div>
@@ -127,19 +127,20 @@ function App() {
           <h2 id="session-label">Session Length</h2>
           <div id="session-controls" className="flex">
             <div id="session-decrement" onClick={decreaseTimer}>
-              v
+              -
             </div>
             <div id="session-length" className="mx-2">
               {sessionLength}
             </div>
             <div id="session-increment" onClick={increaseTimer}>
-              ^
+              +
             </div>
           </div>
         </div>
       </div>
       <ClockDisplay
         timeLeft={formatTime(timeLeft)}
+        timerValue={timeLeft}
         isBreak={isBreak}
         onStart={playPause}
         onReset={onReset}
