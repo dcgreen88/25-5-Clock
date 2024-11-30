@@ -40,19 +40,15 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   if (timeLeft === 0) {
-  //     setTimerRunning((prev) => !prev);
-  //     setIsBreak((prev) => !prev);
-  //   }
-  // }, [timeLeft]);
-  // useEffect(() => {
-  //   if (isBreak) {
-  //     setTimeLeft(sessionLength);
-  //   } else {
-  //     setTimeLeft(breakLength);
-  //   }
-  // }, [isBreak, sessionLength, breakLength]);
+  useEffect(() => {
+    if (timeLeft === -1 && !isBreak) {
+      setIsBreak((prev) => !prev);
+      setTimeLeft(breakLength * 60);
+    } else if (timeLeft === -1 && isBreak) {
+      setIsBreak((prev) => !prev);
+      setTimeLeft(sessionLength * 60);
+    }
+  }, [timeLeft, isBreak, breakLength, sessionLength]);
 
   function playPause() {
     if (timerRunning) {
@@ -65,7 +61,7 @@ function App() {
         setTimerRunning(true);
         timerRef.current = setInterval(() => {
           setTimeLeft((prev) => {
-            if (prev > 0) {
+            if (prev >= 0) {
               return prev - 1;
             } else {
               return timeLeft;
