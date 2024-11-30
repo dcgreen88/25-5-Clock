@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import ClockDisplay from './component/ClockDisplay';
 
 function App() {
@@ -8,6 +8,12 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(sessionLength * 60);
   const [timerRunning, setTimerRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
+  const audio = document.getElementById('beep');
+
+  const beep = useCallback(() => {
+    audio.currentTime = 0;
+    audio.play();
+  }, [audio]);
 
   function decreaseTimer(event) {
     if (timerRunning) return; // Avoid multiple intervals if already running
@@ -44,11 +50,13 @@ function App() {
     if (timeLeft === -1 && !isBreak) {
       setIsBreak((prev) => !prev);
       setTimeLeft(breakLength * 60);
+      beep();
     } else if (timeLeft === -1 && isBreak) {
       setIsBreak((prev) => !prev);
       setTimeLeft(sessionLength * 60);
+      beep();
     }
-  }, [timeLeft, isBreak, breakLength, sessionLength]);
+  }, [timeLeft, isBreak, breakLength, sessionLength, beep]);
 
   function playPause() {
     if (timerRunning) {
@@ -79,6 +87,8 @@ function App() {
     setBreakLength(5);
     setSessionLength(25);
     setTimeLeft(25 * 60);
+    audio.pause();
+    audio.currentTime = 0;
   }
 
   function formatTime(seconds) {
@@ -124,6 +134,11 @@ function App() {
         onStart={playPause}
         onReset={onReset}
       />
+      <audio
+        id="beep"
+        preload="auto"
+        src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
+      ></audio>
     </div>
   );
 }
