@@ -1,10 +1,11 @@
 module.exports = {
-  content: [
-    "./public/**/*.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        times: ['Times New Roman', 'serif'], // Add Times New Roman to the theme
+      },
+    },
   },
   plugins: [],
-}
+};

@@ -100,30 +100,40 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800">25 + 5 Clock</h1>
-      <div id="controls" className="flex">
-        <div id="break" className="flex flex-col">
+    <div className="flex flex-col items-center justify-center h-screen bg-teal-800 text-white font-times">
+      <h1 className="text-4xl">25 + 5 Clock</h1>
+      <div id="controls" className="flex p-[4px] w-2/5 text-xl">
+        <div
+          id="break"
+          className="flex flex-col basis-1/2 justify-center items-center"
+        >
           <h2 id="break-label">Break Length</h2>
           <div id="break-controls" className="flex">
             <div id="break-decrement" onClick={decreaseTimer}>
-              Down
+              v
             </div>
-            <div id="break-length">{breakLength}</div>
+            <div id="break-length" className="mx-2">
+              {breakLength}
+            </div>
             <div id="break-increment" onClick={increaseTimer}>
-              Up
+              ^
             </div>
           </div>
         </div>
-        <div id="session" className="flex flex-col">
+        <div
+          id="session"
+          className="flex flex-col basis-1/2 justify-center items-center"
+        >
           <h2 id="session-label">Session Length</h2>
           <div id="session-controls" className="flex">
             <div id="session-decrement" onClick={decreaseTimer}>
-              Down
+              v
             </div>
-            <div id="session-length">{sessionLength}</div>
+            <div id="session-length" className="mx-2">
+              {sessionLength}
+            </div>
             <div id="session-increment" onClick={increaseTimer}>
-              Up
+              ^
             </div>
           </div>
         </div>
